@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sábados de Salchipapas — La mejor salchipapa todos los sábados</title>
+<meta name="description" content="Salchipapa normal $2.00 en envase de un solo uso. Todos los sábados. Buen sabor + buena compañía. ¡No es solo comida, es un sábado!">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/titan-one@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/permanent-marker@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/nunito@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/nunito@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/nunito@latest/latin-900-normal.css">
+<style>
+:root{
+  --black:#0b0b0b; --coal:#151515; --coal2:#1d1d1d;
+  --yellow:#FFD21F; --yellow2:#FFB800;
+  --red:#E4322B; --red2:#A81D15;
+  --cream:#FFF6E0; --white:#ffffff;
+  --font-display:'Titan One', system-ui, sans-serif;
+  --font-marker:'Permanent Marker', cursive;
+  --font-body:'Nunito', system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--yellow);color:#000}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5vw;transition:background .35s, box-shadow .35s, padding .35s}
+.nav.scrolled{background:rgba(11,11,11,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.55);padding:10px 5vw}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.02rem;letter-spacing:.5px}
+.brand svg{width:34px;height:30px;flex:none}
+.brand b{color:var(--yellow)}
+.nav-links{display:flex;gap:26px;font-weight:900;font-size:.86rem;letter-spacing:1.5px;text-transform:uppercase}
+.nav-links a{position:relative;padding:6px 2px;opacity:.85;transition:opacity .2s,color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:3px;background:var(--yellow);border-radius:3px;transition:width .25s}
+.nav-links a:hover{opacity:1;color:var(--yellow)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--yellow);color:#000;font-weight:900;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;
+  padding:11px 20px;border-radius:999px;box-shadow:0 4px 0 var(--yellow2);transition:transform .15s, box-shadow .15s}
+.nav-cta:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--yellow2)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:42px;height:38px;position:relative;z-index:110}
+.burger span{position:absolute;left:8px;right:8px;height:3px;background:var(--yellow);border-radius:3px;transition:.3s}
+.burger span:nth-child(1){top:10px}.burger span:nth-child(2){top:18px}.burger span:nth-child(3){top:26px}
+.nav.open .burger span:nth-child(1){top:18px;transform:rotate(45deg)}
+.nav.open .burger span:nth-child(2){opacity:0}
+.nav.open .burger span:nth-child(3){top:18px;transform:rotate(-45deg)}
+@media(max-width:900px){
+  .burger{display:block}
+  .nav-links{position:fixed;inset:0;background:rgba(11,11,11,.98);flex-direction:column;align-items:center;justify-content:center;
+    gap:30px;font-size:1.1rem;transform:translateY(-100%);transition:transform .4s ease;z-index:105}
+  .nav.open .nav-links{transform:translateY(0)}
+  .nav-cta{display:none}
+}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100svh;position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+  padding:120px 6vw 90px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 50% at 78% 40%, rgba(255,210,31,.10), transparent 60%),
+             radial-gradient(40% 40% at 10% 90%, rgba(228,50,43,.10), transparent 60%);}
+.hero-copy{position:relative;z-index:2}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.badge{font-family:var(--font-marker);font-size:.82rem;padding:8px 16px;border-radius:999px;border:2px solid var(--yellow);color:var(--yellow)}
+.badge.solid{background:var(--yellow);color:#000;border-color:var(--yellow)}
+.badge:nth-child(1){transform:rotate(-3deg)}
+.badge:nth-child(2){transform:rotate(2deg)}
+.crown-row svg{width:74px;height:62px}
+.hero h1{font-family:var(--font-display);line-height:.92;text-transform:uppercase}
+.hero h1 .l1{display:block;font-size:clamp(3.2rem,9vw,7.2rem);color:var(--yellow);
+  text-shadow:5px 5px 0 #000, 10px 10px 0 rgba(228,50,43,.55);transform:rotate(-2deg)}
+.hero h1 .l2{display:block;font-size:clamp(1.1rem,2.6vw,1.9rem);color:var(--white);letter-spacing:6px;margin:10px 0 6px;position:relative;width:max-content}
+.hero h1 .l2::before,.hero h1 .l2::after{content:"";position:absolute;top:50%;width:clamp(28px,5vw,70px);height:4px;background:var(--white);border-radius:4px}
+.hero h1 .l2::before{left:calc(-1 * clamp(36px,6vw,84px))}
+.hero h1 .l2::after{right:calc(-1 * clamp(36px,6vw,84px))}
+.hero h1 .l3{display:block;font-size:clamp(2.5rem,7.4vw,6rem);color:var(--white);
+  text-shadow:5px 5px 0 var(--red), 9px 9px 0 rgba(0,0,0,.6);transform:rotate(-1.5deg)}
+.hero-tag{margin:22px 0 30px;font-size:clamp(1rem,1.6vw,1.2rem);font-weight:700;color:#d8d8d8;max-width:46ch}
+.hero-tag em{color:var(--yellow);font-style:normal;font-weight:900}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;
+  font-size:.9rem;padding:16px 30px;border-radius:999px;transition:transform .15s, box-shadow .15s, border-color .2s, color .2s;cursor:pointer;border:0}
+.btn-primary{background:var(--yellow);color:#000;box-shadow:0 6px 0 var(--yellow2), 0 16px 34px rgba(255,210,31,.22)}
+.btn-primary:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--yellow2)}
+.btn-ghost{background:transparent;color:var(--white);border:2px dashed rgba(255,255,255,.45)}
+.btn-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+.hero-stats{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--font-display);font-size:1.7rem;color:var(--yellow)}
+.stat span{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:#9a9a9a;font-weight:700}
+.hero-art{position:relative;z-index:2;display:flex;justify-content:center}
+.poster{position:relative;width:min(100%,470px);transform:rotate(3deg);border-radius:22px;overflow:hidden;
+  border:3px solid rgba(255,210,31,.55);box-shadow:0 30px 70px rgba(0,0,0,.7), 0 0 0 10px rgba(255,210,31,.06);
+  animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(2deg) translateY(-14px)}}
+.poster img{width:100%;height:100%;object-fit:cover}
+.price-sticker{position:absolute;top:16px;left:-14px;background:var(--red);color:#fff;font-family:var(--font-display);
+  font-size:1.5rem;padding:14px 22px;border-radius:14px;transform:rotate(-10deg);box-shadow:0 8px 22px rgba(0,0,0,.5);border:3px solid #fff}
+.day-sticker{position:absolute;bottom:16px;right:-10px;background:var(--yellow);color:#000;font-family:var(--font-marker);
+  font-size:.95rem;padding:10px 18px;border-radius:999px;transform:rotate(6deg);box-shadow:0 8px 22px rgba(0,0,0,.5)}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--yellow);font-family:var(--font-marker);font-size:.85rem;letter-spacing:1px;animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-cue .mouse{width:26px;height:42px;border:3px solid var(--yellow);border-radius:14px;position:relative}
+.scroll-cue .mouse::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:9px;background:var(--yellow);border-radius:4px;transform:translateX(-50%);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:1;top:8px}100%{opacity:0;top:22px}}
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:110px;text-align:center}
+  .hero-badges,.hero-actions,.hero-stats{justify-content:center}
+  .hero h1 .l2::before,.hero h1 .l2::after{display:none}
+  .hero-tag{margin-inline:auto}
+  .poster{width:min(88%,420px)}
+}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--yellow);color:#000;overflow:hidden;padding:14px 0;transform:rotate(-1.2deg) scale(1.02);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.marquee-inner{display:flex;width:max-content;animation:mq 26s linear infinite}
+.marquee-inner span{font-family:var(--font-display);font-size:1.05rem;letter-spacing:2px;text-transform:uppercase;padding:0 18px;white-space:nowrap}
+.marquee-inner span i{font-style:normal;color:var(--red)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- ASSEMBLY VERTICAL ---------- */
+.assembly-intro{padding:110px 6vw 40px;text-align:center}
+.kicker{font-family:var(--font-marker);color:var(--yellow);letter-spacing:3px;font-size:.95rem;text-transform:uppercase}
+.assembly-intro h2{font-family:var(--font-display);font-size:clamp(1.9rem,4.6vw,3.4rem);text-transform:uppercase;margin-top:12px;line-height:1.05}
+.assembly-intro h2 em{font-style:normal;color:var(--yellow)}
+.assembly-intro p{color:#a9a9a9;max-width:56ch;margin:16px auto 0;font-weight:700}
+.track{height:520vh;position:relative}
+.sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden;padding:70px 4vw 24px}
+.glow{position:absolute;width:min(78vw,760px);aspect-ratio:1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle, rgba(255,210,31,.20), rgba(255,210,31,.05) 45%, transparent 70%);opacity:0}
+.step-caption{font-family:var(--font-marker);font-size:clamp(1.05rem,2.4vw,1.6rem);color:var(--yellow);min-height:1.6em;text-align:center}
+.step-caption.pop{animation:capPop .45s ease}
+@keyframes capPop{0%{opacity:0;transform:translateY(14px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.stage{position:relative;width:min(88vw,600px)}
+.stage svg{width:100%;height:auto;display:block;overflow:visible}
+.layer{transform-box:fill-box;transform-origin:50% 50%;opacity:0;will-change:transform,opacity}
+.stamp{position:absolute;top:6%;right:2%;font-family:var(--font-display);font-size:clamp(1.4rem,3.4vw,2.4rem);color:var(--yellow);
+  border:5px solid var(--yellow);border-radius:16px;padding:10px 22px;transform:rotate(12deg) scale(0);background:rgba(11,11,11,.75);transition:transform .45s cubic-bezier(.2,2.2,.4,1)}
+.stamp.show{transform:rotate(-10deg) scale(1)}
+.dots{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.dot{display:flex;align-items:center;gap:8px;font-size:.72rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#777;transition:color .3s}
+.dot i{width:14px;height:14px;border-radius:50%;border:3px solid #444;transition:.3s;font-style:normal}
+.dot.active{color:var(--white)}
+.dot.active i{border-color:var(--yellow);box-shadow:0 0 0 4px rgba(255,210,31,.18)}
+.dot.done{color:var(--yellow)}
+.dot.done i{background:var(--yellow);border-color:var(--yellow)}
+.progress-wrap{width:min(80vw,520px);display:flex;align-items:center;gap:14px}
+.progress{flex:1;height:10px;background:#262626;border-radius:99px;overflow:hidden}
+.progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--yellow2),var(--yellow));border-radius:99px}
+.progress-num{font-family:var(--font-display);color:var(--yellow);font-size:.95rem;min-width:48px;text-align:right}
+.sticky-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:var(--font-marker);color:#8a8a8a;font-size:.85rem;transition:opacity .4s}
+.sticky-hint.hide{opacity:0}
+
+/* ---------- SECCIONES HORIZONTALES (deslizar a la derecha) ---------- */
+.h-head{padding:110px 6vw 30px;text-align:center}
+.h-head h2{font-family:var(--font-display);font-size:clamp(1.9rem,4.6vw,3.4rem);text-transform:uppercase;margin-top:12px;line-height:1.05}
+.h-head h2 em{font-style:normal;color:var(--yellow)}
+.h-head p{color:#a9a9a9;max-width:56ch;margin:14px auto 0;font-weight:700}
+.h-track{position:relative}
+.h-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.h-row{display:flex;gap:26px;padding:0 8vw;width:max-content;will-change:transform}
+.h-card{width:min(80vw,340px);flex:none;background:var(--coal2);border:2px solid #2b2b2b;border-radius:26px;padding:36px 30px;position:relative;overflow:hidden;transition:border-color .3s}
+.h-card:hover{border-color:var(--yellow)}
+.h-num{font-family:var(--font-display);font-size:3rem;color:rgba(255,210,31,.16);position:absolute;top:16px;right:22px;line-height:1}
+.h-ico{font-size:2.3rem;margin-bottom:14px}
+.h-card h3{font-family:var(--font-display);font-size:1.1rem;text-transform:uppercase;color:var(--yellow);margin-bottom:10px}
+.h-card p{color:#a9a9a9;font-weight:700;font-size:.95rem}
+.h-card.quote{background:var(--yellow);border-color:var(--yellow)}
+.h-card.quote h3{color:#000}
+.h-card.quote p{color:#241a00;font-size:1.05rem;font-weight:900}
+.h-card.quote .h-num{color:rgba(0,0,0,.15)}
+.h-ui{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;width:min(80vw,520px)}
+.h-arrow{font-family:var(--font-marker);color:var(--yellow);font-size:.9rem;white-space:nowrap;animation:hArrow 1.8s ease-in-out infinite}
+@keyframes hArrow{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+.h-rail{flex:1;height:8px;background:#262626;border-radius:99px;overflow:hidden}
+.h-rail span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--yellow2),var(--yellow));border-radius:99px}
+.h-count{font-family:var(--font-display);color:var(--yellow);font-size:.9rem;min-width:44px;text-align:right}
+
+/* ---------- NO COCINAR ---------- */
+.no-cocinar{padding:130px 6vw 120px;text-align:center;position:relative;overflow:hidden}
+.no-cocinar::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 45% at 50% 55%, rgba(255,210,31,.08), transparent 65%)}
+.no-cocinar h2{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(2rem,6vw,4.6rem);line-height:1.08;position:relative}
+.no-cocinar h2 .w{display:inline-block;opacity:0;transform:translateY(46px) rotate(6deg);transition:opacity .5s ease, transform .6s cubic-bezier(.2,1.4,.4,1);transition-delay:calc(var(--i)*90ms)}
+.no-cocinar.in h2 .w{opacity:1;transform:translateY(0) rotate(0)}
+.no-cocinar h2 .line2{color:var(--yellow);position:relative;display:inline-block}
+.no-cocinar h2 .line2::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-14px;height:12px;background:var(--red);border-radius:8px;transform:rotate(-1.4deg);opacity:0;transition:opacity .5s .9s}
+.no-cocinar.in h2 .line2::after{opacity:1}
+.no-cocinar p.lead{max-width:60ch;margin:38px auto 34px;color:#c9c9c9;font-weight:700;font-size:clamp(1rem,1.7vw,1.2rem);
+  opacity:0;transform:translateY(24px);transition:.7s .8s}
+.no-cocinar.in p.lead{opacity:1;transform:none}
+.no-cocinar .hero-actions{justify-content:center;opacity:0;transform:translateY(24px);transition:.7s 1s}
+.no-cocinar.in .hero-actions{opacity:1;transform:none}
+.smiley{position:absolute;font-family:var(--font-marker);color:var(--yellow);font-size:2rem;opacity:.5}
+.smiley.s1{top:16%;left:8%;transform:rotate(-14deg)}
+.smiley.s2{bottom:14%;right:9%;transform:rotate(12deg)}
+
+/* ---------- MENU ---------- */
+.menu{padding:100px 6vw 136px;background:var(--coal);position:relative}
+.menu::before,.menu::after{content:"";position:absolute;left:0;right:0;height:26px;background-size:26px 26px;background-repeat:repeat-x}
+.menu::before{top:-26px;background-image:radial-gradient(circle at 12px 26px, transparent 12px, var(--coal) 13px)}
+.menu::after{bottom:-26px;background-image:radial-gradient(circle at 12px 0, transparent 12px, var(--coal) 13px)}
+.section-head{text-align:center;margin-bottom:56px}
+.section-head h2{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.6rem);text-transform:uppercase;margin-top:10px}
+.section-head h2 em{font-style:normal;color:var(--yellow)}
+.menu-grid{display:flex;justify-content:center}
+.product{display:grid;grid-template-columns:.9fr 1.1fr;max-width:900px;width:100%;background:var(--coal2);border-radius:26px;overflow:hidden;
+  border:2px solid #2b2b2b;transition:transform .3s, border-color .3s, box-shadow .3s;position:relative}
+.product:hover{transform:translateY(-8px) rotate(-.4deg);border-color:var(--yellow);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.product-img{position:relative;background:#000;min-height:340px}
+.product-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.product-img .only{position:absolute;top:14px;left:14px;background:var(--yellow);color:#000;font-family:var(--font-marker);font-size:.8rem;padding:8px 14px;border-radius:999px;transform:rotate(-4deg)}
+.product-body{padding:42px 40px}
+.product-body h3{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.3rem);text-transform:uppercase;color:var(--white)}
+.product-body .sub{font-family:var(--font-marker);color:var(--yellow);margin:6px 0 18px}
+.product-body ul{list-style:none;margin:0 0 24px;display:grid;gap:10px}
+.product-body li{padding-left:30px;position:relative;color:#cfcfcf;font-weight:700}
+.product-body li::before{content:"✓";position:absolute;left:0;top:0;color:var(--yellow);font-weight:900}
+.price-row{display:flex;align-items:center;gap:18px;margin-bottom:26px;flex-wrap:wrap}
+.price-tag{font-family:var(--font-display);font-size:2.6rem;color:#000;background:var(--yellow);padding:10px 26px;border-radius:18px;transform:rotate(-3deg);box-shadow:0 8px 0 var(--yellow2)}
+.price-note{font-size:.82rem;color:#9a9a9a;font-weight:700;max-width:22ch}
+@media(max-width:860px){.product{grid-template-columns:1fr}.product-img{min-height:280px}.product-body{padding:32px 26px}}
+
+/* ---------- CONTACTO ---------- */
+.contact{padding:110px 6vw 90px;background:var(--coal)}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1000px;margin:0 auto 40px}
+.c-card{background:var(--coal2);border:2px solid #2b2b2b;border-radius:22px;padding:32px 26px;text-align:center;transition:border-color .3s, transform .3s}
+.c-card:hover{border-color:var(--yellow);transform:translateY(-6px)}
+.c-card .ico{font-size:2rem;margin-bottom:12px}
+.c-card h3{font-family:var(--font-display);text-transform:uppercase;font-size:1rem;color:var(--yellow);margin-bottom:10px}
+.c-card p{color:#bdbdbd;font-weight:700;font-size:.95rem}
+.contact-note{text-align:center;color:#9a9a9a;font-weight:700;font-family:var(--font-marker);font-size:1rem}
+.contact-note b{color:var(--yellow)}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+
+/* ---------- FOOTER ---------- */
+footer{padding:44px 6vw 130px;text-align:center;border-top:2px dashed #262626}
+footer .brand{justify-content:center;margin-bottom:12px}
+footer p{color:#8a8a8a;font-size:.85rem;font-weight:700}
+footer p b{color:var(--yellow)}
+
+/* ---------- COMPAÑERA: LA SALCHIPAPA QUE TE SIGUE ---------- */
+#companion{position:fixed;right:20px;bottom:20px;z-index:95;width:118px;pointer-events:none;
+  opacity:0;transform:translateY(50px) scale(.8);transition:opacity .5s ease, transform .5s cubic-bezier(.2,1.6,.4,1)}
+#companion.show{opacity:1;transform:translateY(0) scale(1)}
+#compInner{will-change:transform}
+#companion svg{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 22px rgba(0,0,0,.6))}
+.comp-bubble{position:absolute;top:-20px;right:78px;background:var(--yellow);color:#000;font-family:var(--font-marker);
+  font-size:.78rem;padding:7px 12px;border-radius:12px;transform:rotate(-7deg);box-shadow:0 6px 16px rgba(0,0,0,.45);white-space:nowrap}
+.comp-bubble::after{content:"";position:absolute;right:-7px;bottom:4px;width:10px;height:10px;background:var(--yellow);border-radius:50%}
+.comp-price{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;
+  font-family:var(--font-display);font-size:.82rem;padding:4px 12px;border-radius:999px;border:2px solid #fff}
+@media(max-width:600px){#companion{width:92px;right:12px;bottom:12px}.comp-bubble{font-size:.68rem;top:-16px;right:64px}}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="brand" href="#inicio" aria-label="Inicio">
+    <svg viewBox="0 0 64 54" fill="none"><path d="M6 44 L12 14 L26 30 L32 8 L38 30 L52 14 L58 44 Z" stroke="#FFD21F" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 50 H54" stroke="#FFD21F" stroke-width="6" stroke-linecap="round"/></svg>
+    <span>SÁBADOS DE <b>SALCHIPAPAS</b></span>
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#inicio">Inicio</a>
+    <a href="#magia">La magia</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#menu">Menú</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="nav-cta" href="#menu">Ver menú</a>
+  <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-copy">
+    <div class="hero-badges">
+      <span class="badge solid">La mejor salchipapa todos los sábados</span>
+      <span class="badge">Buen sabor + buena compañía = SÁBADO</span>
+    </div>
+    <div class="crown-row">
+      <svg viewBox="0 0 64 54" fill="none"><path d="M6 44 L12 14 L26 30 L32 8 L38 30 L52 14 L58 44 Z" stroke="#FFD21F" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 50 H54" stroke="#FFD21F" stroke-width="6" stroke-linecap="round"/></svg>
+    </div>
+    <h1>
+      <span class="l1">Sábados</span>
+      <span class="l2">de</span>
+      <span class="l3">Salchipapas</span>
+    </h1>
+    <p class="hero-tag">¡No es solo comida, <em>es un SÁBADO!</em> Una sola receta, perfeccionada hasta la obsesión, servida en <em>envase de un solo uso</em> por solo <em>$2.00</em>.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#menu">Quiero mi salchipapa</a>
+      <a class="btn btn-ghost" href="#magia">Ver cómo se forma ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>$2.00</b><span>Precio único</span></div>
+      <div class="stat"><b>100%</b><span>Hecha al momento</span></div>
+      <div class="stat"><b>SÁB</b><span>Todos los sábados</span></div>
+    </div>
+  </div>
+  <div class="hero-art">
+    <figure class="poster">
+      <img src="https://image.qwenlm.ai/public_source/2e4222e1-915b-4ee5-a7da-3262a4ceafc9/15834a645-6978-4003-82c8-b114f7a075bc.png" alt="Salchipapa en envase de un solo uso con papas fritas, salchicha y salsas">
+      <span class="price-sticker">$2.00</span>
+      <span class="day-sticker">¡Todos los sábados!</span>
+    </figure>
+  </div>
+  <div class="scroll-cue"><span>Desliza hacia abajo</span><div class="mouse"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>SÁBADOS DE SALCHIPAPAS <i>★</i> $2.00 <i>★</i> ENVASE DE UN SOLO USO <i>★</i> PAPAS CROCANTES <i>★</i> SALCHICHA JUGOSA <i>★</i> SALSAS DE LA CASA <i>★</i>&nbsp;</span>
+    <span>SÁBADOS DE SALCHIPAPAS <i>★</i> $2.00 <i>★</i> ENVASE DE UN SOLO USO <i>★</i> PAPAS CROCANTES <i>★</i> SALCHICHA JUGOSA <i>★</i> SALSAS DE LA CASA <i>★</i>&nbsp;</span>
+  </div>
+</div>
+
+<!-- ASSEMBLY VERTICAL -->
+<section id="magia">
+  <div class="assembly-intro reveal">
+    <span class="kicker">La magia de cada sábado</span>
+    <h2>MIRA CÓMO SE FORMA <em>TU SALCHIPAPA</em></h2>
+    <p>Sigue bajando despacio: capa por capa, tu salchipapa se arma frente a ti en su envase de un solo uso, exactamente como la preparamos en el puesto.</p>
+  </div>
+
+  <div class="track" id="track">
+    <div class="sticky">
+      <div class="glow" id="glow"></div>
+      <div class="step-caption" id="caption">Sigue bajando para armarla…</div>
+
+      <div class="stage">
+        <svg viewBox="0 0 560 440" role="img" aria-label="Salchipapa armándose por capas en su envase desechable">
+          <defs>
+            <linearGradient id="gFoam" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D5D5D5"/>
+            </linearGradient>
+            <linearGradient id="gSaus" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#C4452C"/><stop offset=".55" stop-color="#9C2C17"/><stop offset="1" stop-color="#701A0C"/>
+            </linearGradient>
+          </defs>
+
+          <!-- CAPA 0 (atrás): tapa abierta del envase + sombra -->
+          <g class="layer" data-step="0">
+            <ellipse cx="280" cy="410" rx="180" ry="15" fill="#000" opacity=".55"/>
+            <g transform="rotate(-6 280 140)">
+              <rect x="150" y="46" width="260" height="152" rx="22" fill="#EFEFEF"/>
+              <rect x="168" y="62" width="224" height="118" rx="16" fill="#D6D6D6"/>
+              <rect x="150" y="186" width="260" height="14" fill="#BFBFBF"/>
+            </g>
+          </g>
+
+          <!-- CAPA 1: papas -->
+          <g class="layer" data-step="1">
+            <g fill="#FFD766">
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(175,205) rotate(-26)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(205,192) rotate(-16)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(238,184) rotate(-8)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(272,180) rotate(-2)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(306,180) rotate(4)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(338,186) rotate(10)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(368,194) rotate(18)"/>
+              <rect x="-11" y="-78" width="22" height="150" rx="10" transform="translate(395,206) rotate(26)"/>
+            </g>
+            <g fill="#FFC93C">
+              <rect x="-10" y="-70" width="20" height="140" rx="9" transform="translate(215,205) rotate(-13)"/>
+              <rect x="-10" y="-70" width="20" height="140" rx="9" transform="translate(285,196) rotate(0)"/>
+              <rect x="-10" y="-70" width="20" height="140" rx="9" transform="translate(350,205) rotate(14)"/>
+            </g>
+            <g fill="#F7B500">
+              <rect x="-10" y="-62" width="20" height="126" rx="9" transform="translate(190,225) rotate(-20)"/>
+              <rect x="-10" y="-62" width="20" height="126" rx="9" transform="translate(224,216) rotate(-11)"/>
+              <rect x="-10" y="-62" width="20" height="126" rx="9" transform="translate(258,210) rotate(-4)"/>
+              <rect x="-10" y="-62" width="20" height="126" rx="9" transform="translate(292,210) rotate(3)"/>
+              <rect x="-10" y="-62" width="20" height="126" rx="9" transform="translate(326,216) rotate(10)"/>
+              <rect x="-10" y="-62" width="20" height="126" rx="9" transform="translate(358,224) rotate(18)"/>
+            </g>
+          </g>
+
+          <!-- CAPA 2: salchicha -->
+          <g class="layer" data-step="2">
+            <g transform="rotate(-10 280 190)">
+              <rect x="152" y="152" width="256" height="76" rx="38" fill="url(#gSaus)"/>
+              <ellipse cx="398" cy="190" rx="14" ry="32" fill="#8C2413"/>
+              <circle cx="404" cy="190" r="7" fill="#5E120B"/>
+              <path d="M212,158 q-10,34 0,64" stroke="#5E120B" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <path d="M272,154 q-10,36 0,68" stroke="#5E120B" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <path d="M332,158 q-10,34 0,64" stroke="#5E120B" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <path d="M176,170 q44,-16 96,-11" stroke="#FF9B85" stroke-width="10" stroke-linecap="round" fill="none" opacity=".55"/>
+            </g>
+          </g>
+
+          <!-- CAPA 3: salsas -->
+          <g class="layer" data-step="3">
+            <g transform="rotate(-10 280 190)" fill="none" stroke-linecap="round">
+              <path d="M170,176 q16,-20 32,0 t32,0 t32,0 t32,0 t32,0 t32,0" stroke="#E4322B" stroke-width="11"/>
+              <path d="M176,206 q16,-18 32,0 t32,0 t32,0 t32,0 t32,0" stroke="#FFF6E0" stroke-width="8"/>
+              <path d="M174,192 q16,-13 32,0 t32,0 t32,0 t32,0 t32,0" stroke="#FFB800" stroke-width="6" opacity=".95"/>
+            </g>
+          </g>
+
+          <!-- CAPA 0 (frente): bandeja desechable -->
+          <g class="layer" data-step="0">
+            <path d="M112,266 L448,266 L424,392 Q280,412 136,392 Z" fill="url(#gFoam)"/>
+            <path d="M112,266 L150,266 L142,392 L136,392 Z" fill="#C9C9C9" opacity=".85"/>
+            <path d="M448,266 L410,266 L418,392 L424,392 Z" fill="#C9C9C9" opacity=".85"/>
+            <rect x="104" y="254" width="352" height="18" rx="9" fill="#FFFFFF" stroke="#C4C4C4" stroke-width="2"/>
+            <g transform="translate(280,332) rotate(-3)">
+              <rect x="-44" y="-24" width="88" height="52" rx="12" fill="#FFD21F"/>
+              <path d="M-22,8 L-16,-8 L-8,2 L0,-12 L8,2 L16,-8 L22,8 Z" fill="#0b0b0b"/>
+              <rect x="-18" y="12" width="36" height="5" rx="2.5" fill="#0b0b0b"/>
+            </g>
+          </g>
+
+          <!-- CAPA 4: brillo / corona -->
+          <g class="layer" data-step="4">
+            <g fill="#FFD21F">
+              <path d="M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z" transform="translate(86,120)"/>
+              <path d="M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z" transform="translate(478,104) scale(.8)"/>
+              <path d="M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z" transform="translate(58,300) scale(.7)"/>
+              <path d="M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z" transform="translate(506,296) scale(.9)"/>
+            </g>
+            <g transform="translate(280,44)" fill="none" stroke="#FFD21F" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M-40,22 L-30,-8 L-13,10 L0,-16 L13,10 L30,-8 L40,22 Z"/>
+              <path d="M-36,30 H36"/>
+            </g>
+          </g>
+        </svg>
+        <div class="stamp" id="stamp">¡LISTA!</div>
+      </div>
+
+      <div class="dots" id="dots">
+        <span class="dot"><i></i>Envase</span>
+        <span class="dot"><i></i>Papas</span>
+        <span class="dot"><i></i>Salchicha</span>
+        <span class="dot"><i></i>Salsas</span>
+        <span class="dot"><i></i>¡Lista!</span>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress"><span id="bar"></span></div>
+        <span class="progress-num" id="pnum">0%</span>
+      </div>
+      <div class="sticky-hint" id="hint">↓ continúa bajando ↓</div>
+    </div>
+  </div>
+</section>
+
+<!-- NO COCINAR -->
+<section class="no-cocinar" id="nococinar">
+  <span class="smiley s1">:)</span>
+  <span class="smiley s2">;)</span>
+  <h2>
+    <span class="w" style="--i:0">¿NO</span>
+    <span class="w" style="--i:1">QUIERES</span>
+    <span class="w" style="--i:2">COCINAR?</span><br>
+    <span class="line2">
+      <span class="w" style="--i:3">NO</span>
+      <span class="w" style="--i:4">HAY</span>
+      <span class="w" style="--i:5">PROBLEMA.</span>
+    </span>
+  </h2>
+  <p class="lead">Hoy no enciendes la cocina: la encendemos nosotros. Tu salchipapa sale caliente y crocante, sellada en su envase de un solo uso, lista para llevar o para disfrutar ahí mismo con buena compañía.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#menu">Ver el menú — $2.00</a>
+    <a class="btn btn-ghost" href="#proceso">Ver el proceso →</a>
+  </div>
+</section>
+
+<!-- HORIZONTAL 1: PROCESO -->
+<section id="proceso">
+  <div class="h-head reveal">
+    <span class="kicker">Paso a paso</span>
+    <h2>EL PROCESO, <em>DESLIZANDO A LA DERECHA</em></h2>
+    <p>Descansa la vista: aquí no bajas, avanzas de lado. Continúa desplazándote y las tarjetas se deslizan solas hacia la derecha.</p>
+  </div>
+  <div class="h-track" data-h>
+    <div class="h-sticky">
+      <div class="h-row">
+        <article class="h-card"><span class="h-num">01</span><div class="h-ico">🗣️</div><h3>Pides en el puesto</h3><p>Llegas el sábado, pides tu salchipapa normal ($2.00) y nosotros hacemos el resto.</p></article>
+        <article class="h-card"><span class="h-num">02</span><div class="h-ico">🍟</div><h3>Papas al momento</h3><p>Peladas, cortadas y fritas doraditas frente a ti. Nada recalentado, nunca.</p></article>
+        <article class="h-card"><span class="h-num">03</span><div class="h-ico">🌭</div><h3>Salchicha dorada</h3><p>Sellada a la plancha hasta quedar jugosa por dentro y brillante por fuera.</p></article>
+        <article class="h-card"><span class="h-num">04</span><div class="h-ico">🥫</div><h3>Salsas de la casa</h3><p>Ketchup, mayonesa y mostaza en zigzag generoso, como debe ser.</p></article>
+        <article class="h-card"><span class="h-num">05</span><div class="h-ico">🥡</div><h3>En tu envase nuevo</h3><p>Servida en envase de un solo uso: higiénico, ligero y listo para llevar.</p></article>
+      </div>
+      <div class="h-ui">
+        <span class="h-arrow">baja ↓ desliza →</span>
+        <div class="h-rail"><span></span></div>
+        <span class="h-count">1/5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-head reveal">
+    <span class="kicker">Una receta, una obsesión</span>
+    <h2>NUESTRO <em>MENÚ</em></h2>
+  </div>
+  <div class="menu-grid reveal">
+    <article class="product">
+      <div class="product-img">
+        <img src="https://image.qwenlm.ai/public_source/2e4222e1-915b-4ee5-a7da-3262a4ceafc9/15834a645-6978-4003-82c8-b114f7a075bc.png" alt="Salchipapa normal en envase desechable blanco">
+        <span class="only">La joya de la casa</span>
+      </div>
+      <div class="product-body">
+        <h3>Salchipapa Normal</h3>
+        <p class="sub">La clásica de siempre, como debe ser</p>
+        <ul>
+          <li>Papas fritas doradas y crocantes al momento</li>
+          <li>Salchicha jugosa dorada a la plancha</li>
+          <li>Ketchup, mayonesa y mostaza de la casa</li>
+          <li>Envase de un solo uso, listo para llevar</li>
+        </ul>
+        <div class="price-row">
+          <span class="price-tag">$2.00</span>
+          <span class="price-note">Por ahora nuestra única estrella — pronto llegan nuevas variedades.</span>
+        </div>
+        <a class="btn btn-primary" href="#contacto">Dónde comprarla →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- HORIZONTAL 2: NOSOTROS -->
+<section id="nosotros">
+  <div class="h-head reveal">
+    <span class="kicker">Buen sabor + buena compañía</span>
+    <h2>POR QUÉ SOMOS <em>TU SÁBADO</em></h2>
+    <p>Otra sección para deslizar de lado, sin cansar la vista: sigue bajando y deja que las tarjetas pasen solas.</p>
+  </div>
+  <div class="h-track" data-h>
+    <div class="h-sticky">
+      <div class="h-row">
+        <article class="h-card"><span class="h-num">★</span><div class="h-ico">🍟</div><h3>Fritura al momento</h3><p>Cada papa se fríe justo cuando la pides: crocancia garantizada o te invitamos otra.</p></article>
+        <article class="h-card"><span class="h-num">★</span><div class="h-ico">🌭</div><h3>Salchicha de verdad</h3><p>Jugosa, dorada y en su punto exacto de cocción. Sin atajos.</p></article>
+        <article class="h-card"><span class="h-num">★</span><div class="h-ico">💛</div><h3>Precio de barrio</h3><p>$2.00 justos, sin sorpresas ni letras pequeñas. Tu sábado rinde más.</p></article>
+        <article class="h-card"><span class="h-num">★</span><div class="h-ico">🥡</div><h3>Envase práctico</h3><p>De un solo uso: higiénico, ligero y perfecto para llevar a donde sea.</p></article>
+        <article class="h-card"><span class="h-num">★</span><div class="h-ico">😄</div><h3>Sabor de sábado</h3><p>Porque no es solo comida: es un sábado completo con buena compañía.</p></article>
+        <article class="h-card quote"><span class="h-num">”</span><div class="h-ico">⭐</div><h3>Cliente de cada sábado</h3><p>«Vine por una salchipapa de dos dólares y me quedé por el ambiente. Ya es mi plan fijo.»</p></article>
+      </div>
+      <div class="h-ui">
+        <span class="h-arrow">baja ↓ desliza →</span>
+        <div class="h-rail"><span></span></div>
+        <span class="h-count">1/6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="section-head reveal">
+    <span class="kicker">Te esperamos</span>
+    <h2>DÓNDE Y <em>CUÁNDO</em></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="c-card reveal"><div class="ico">📍</div><h3>Ubicación</h3><p>Plazoleta del barrio<br>(punto de referencia: parque central)</p></div>
+    <div class="c-card reveal"><div class="ico">⏰</div><h3>Horario</h3><p>Todos los sábados<br>12h00 – 20h00</p></div>
+    <div class="c-card reveal"><div class="ico"></div><h3>Pedidos</h3><p>Directo en el puesto,<br>para llevar o disfrutar ahí</p></div>
+  </div>
+  <p class="contact-note reveal">Muy pronto: pedidos por <b>WhatsApp</b>. Por ahora, te esperamos en el puesto. 💛</p>
+</section>
+
+<footer>
+  <div class="brand">
+    <svg viewBox="0 0 64 54" fill="none"><path d="M6 44 L12 14 L26 30 L32 8 L38 30 L52 14 L58 44 Z" stroke="#FFD21F" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 50 H54" stroke="#FFD21F" stroke-width="6" stroke-linecap="round"/></svg>
+    <span>SÁBADOS DE <b>SALCHIPAPAS</b></span>
+  </div>
+  <p>© 2025 Sábados de Salchipapas — Hecho con <b>sabor de sábado</b>. ¡No es solo comida, es un SÁBADO!</p>
+</footer>
+
+<!-- LA SALCHIPAPA QUE TE SIGUE MIENTRAS BAJAS -->
+<div id="companion" aria-hidden="true">
+  <span class="comp-bubble">¡te sigo!</span>
+  <div id="compInner">
+    <svg viewBox="0 0 140 130">
+      <g transform="rotate(-6 70 40)">
+        <rect x="34" y="6" width="72" height="44" rx="10" fill="#EFEFEF"/>
+        <rect x="40" y="11" width="60" height="33" rx="7" fill="#D6D6D6"/>
+      </g>
+      <g fill="#FFD766">
+        <rect x="-5" y="-24" width="10" height="48" rx="4" transform="translate(42,58) rotate(-20)"/>
+        <rect x="-5" y="-24" width="10" height="48" rx="4" transform="translate(56,52) rotate(-9)"/>
+        <rect x="-5" y="-24" width="10" height="48" rx="4" transform="translate(70,50) rotate(0)"/>
+        <rect x="-5" y="-24" width="10" height="48" rx="4" transform="translate(84,52) rotate(9)"/>
+        <rect x="-5" y="-24" width="10" height="48" rx="4" transform="translate(98,58) rotate(20)"/>
+      </g>
+      <g transform="rotate(-9 70 48)">
+        <rect x="32" y="36" width="76" height="24" rx="12" fill="#9C2C17"/>
+        <path d="M52,38 q-3,10 0,20" stroke="#5E120B" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M70,37 q-3,11 0,22" stroke="#5E120B" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M88,38 q-3,10 0,20" stroke="#5E120B" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M40,42 q14,-5 30,-3" stroke="#FF9B85" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".6"/>
+      </g>
+      <path d="M40,46 q6,-7 12,0 t12,0 t12,0 t12,0 t12,0" stroke="#E4322B" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M44,56 q6,-6 12,0 t12,0 t12,0 t12,0" stroke="#FFF6E0" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M20,70 L120,70 L112,112 Q70,120 28,112 Z" fill="#F2F2F2"/>
+      <path d="M20,70 L32,70 L29,112 L28,112 Z" fill="#C9C9C9"/>
+      <path d="M120,70 L108,70 L111,112 L112,112 Z" fill="#C9C9C9"/>
+      <rect x="16" y="64" width="108" height="10" rx="5" fill="#FFFFFF" stroke="#C4C4C4" stroke-width="1.5"/>
+      <g transform="translate(70,92)">
+        <rect x="-16" y="-9" width="32" height="19" rx="5" fill="#FFD21F"/>
+        <path d="M-8,3 L-6,-3 L-3,1 L0,-4 L3,1 L6,-3 L8,3 Z" fill="#0b0b0b"/>
+      </g>
+    </svg>
+  </div>
+  <span class="comp-price">$2.00</span>
+</div>
+
+<script>
+(function(){
+  /* NAV */
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ nav.classList.remove('open'); });
+  });
+
+  /* REVEAL */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.18});
+  document.querySelectorAll('.reveal, .no-cocinar').forEach(function(el){ io.observe(el); });
+
+  /* ELEMENTOS ASSEMBLY */
+  var track   = document.getElementById('track');
+  var layers  = Array.prototype.slice.call(document.querySelectorAll('.layer'));
+  var caption = document.getElementById('caption');
+  var bar     = document.getElementById('bar');
+  var pnum    = document.getElementById('pnum');
+  var glow    = document.getElementById('glow');
+  var stamp   = document.getElementById('stamp');
+  var hint    = document.getElementById('hint');
+  var dots    = Array.prototype.slice.call(document.querySelectorAll('#dots .dot'));
+  var companion = document.getElementById('companion');
+  var compInner = document.getElementById('compInner');
+
+  var STEPS = [
+    {from:.02, to:.18, text:'1 · Abrimos tu envase de un solo uso 🥡'},
+    {from:.18, to:.40, text:'2 · Papas fritas doradas y crocantes 🍟'},
+    {from:.40, to:.62, text:'3 · La salchicha jugosa entra en escena 🌭'},
+    {from:.62, to:.82, text:'4 · Ketchup, mayo y mostaza de la casa'},
+    {from:.82, to:.97, text:'5 · ¡Tu salchipapa está lista! 🎉'}
+  ];
+
+  /* SECCIONES HORIZONTALES */
+  var hTracks = Array.prototype.slice.call(document.querySelectorAll('[data-h]')).map(function(t){
+    return {
+      t:t,
+      row:t.querySelector('.h-row'),
+      rail:t.querySelector('.h-rail span'),
+      count:t.querySelector('.h-count'),
+      cards:t.querySelectorAll('.h-card').length,
+      extra:0
+    };
+  });
+  function sizeH(){
+    hTracks.forEach(function(o){
+      o.extra = Math.max(0, o.row.scrollWidth - window.innerWidth);
+      o.t.style.height = (o.extra + window.innerHeight) + 'px';
+    });
+  }
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+  function easeOutBack(t){ var c = 2.0; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); }
+  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
+
+  var lastCaption = '';
+  function setCaption(txt){
+    if(txt === lastCaption) return;
+    lastCaption = txt;
+    caption.textContent = txt;
+    caption.classList.remove('pop');
+    void caption.offsetWidth;
+    caption.classList.add('pop');
+  }
+
+  var ticking = false;
+  function render(){
+    ticking = false;
+    var vh = window.innerHeight;
+    var rect  = track.getBoundingClientRect();
+    var total = track.offsetHeight - vh;
+    var p = total > 0 ? clamp01(-rect.top / total) : 0;
+
+    /* capas de la salchipapa */
+    layers.forEach(function(g){
+      var i = parseInt(g.getAttribute('data-step'), 10);
+      var s = STEPS[i];
+      var t = clamp01((p - s.from) / (s.to - s.from));
+      if(i === 4){
+        var eb = easeOutBack(t);
+        g.style.opacity = t.toFixed(3);
+        g.style.transform = 'translateY(' + ((1 - easeOutCubic(t)) * -40).toFixed(1) + 'px) scale(' + Math.max(0, eb).toFixed(3) + ')';
+      }else{
+        var e = easeOutCubic(t);
+        g.style.opacity = Math.min(1, t * 1.6).toFixed(3);
+        g.style.transform = 'translateY(' + ((1 - e) * -160).toFixed(1) + 'px) rotate(' + ((1 - e) * -8).toFixed(2) + 'deg) scale(' + (0.6 + 0.4 * e).toFixed(3) + ')';
+      }
+    });
+
+    dots.forEach(function(d, i){
+      var s = STEPS[i];
+      d.classList.toggle('done', p >= s.to - 0.001);
+      d.classList.toggle('active', p >= s.from && p < s.to);
+    });
+
+    var txt = 'Sigue bajando para armarla…';
+    for(var i = 0; i < STEPS.length; i++){
+      if(p >= STEPS[i].from) txt = STEPS[i].text;
+    }
+    if(rect.top < vh && rect.bottom > 0) setCaption(txt);
+
+    bar.style.width = (p * 100).toFixed(1) + '%';
+    pnum.textContent = Math.round(p * 100) + '%';
+    glow.style.opacity = (p * 0.9).toFixed(2);
+    stamp.classList.toggle('show', p > 0.965);
+    hint.classList.toggle('hide', p > 0.03);
+
+    /* la compañera aparece cuando la salchipapa ya está formada y te sigue */
+    companion.classList.toggle('show', rect.bottom < vh * 0.85);
+
+    /* secciones horizontales */
+    hTracks.forEach(function(o){
+      var r = o.t.getBoundingClientRect();
+      var tt = o.t.offsetHeight - vh;
+      var hp = tt > 0 ? clamp01(-r.top / tt) : 0;
+      o.row.style.transform = 'translate3d(' + (-hp * o.extra).toFixed(1) + 'px,0,0)';
+      o.rail.style.width = (hp * 100).toFixed(1) + '%';
+      var idx = Math.min(o.cards, Math.floor(hp * o.cards) + 1);
+      o.count.textContent = idx + '/' + o.cards;
+    });
+
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(render); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ sizeH(); onScroll(); });
+  window.addEventListener('load', function(){ sizeH(); onScroll(); });
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ sizeH(); onScroll(); }); }
+  sizeH(); render();
+
+  /* movimiento "vivo" de la compañera: rebota y se inclina según tu scroll */
+  var lastY = window.scrollY, tilt = 0, bobT = 0;
+  (function loop(){
+    var y = window.scrollY;
+    var d = y - lastY; lastY = y;
+    var target = Math.max(-16, Math.min(16, d * 1.1));
+    tilt += (target - tilt) * 0.10;
+    bobT += 0.035 + Math.min(0.06, Math.abs(d) * 0.002);
+    var bob = Math.sin(bobT) * 5;
+    compInner.style.transform = 'translateY(' + bob.toFixed(2) + 'px) rotate(' + tilt.toFixed(2) + 'deg)';
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
